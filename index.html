@@ -84,10 +84,17 @@ button{
 <script>
 let pages = document.querySelectorAll(".page");
 let current = 0;
-
+let info = document.querySelector(".info");
 function show(index){
-  pages.forEach(p => p.classList.remove("active"));
-  pages[index].classList.add("active");
+    pages.forEach(p => p.classList.remove("active"));
+    pages[index].classList.add("active");
+
+    if(index === 0){
+        info.style.display = "block";
+    } else {
+        info.style.display = "none";
+    }
+  
 }
 
 function next(){
@@ -97,7 +104,7 @@ function next(){
   }
   show(current);
 }
-
+show(0);
 function prev(){
   current--;
   if(current < 0){
