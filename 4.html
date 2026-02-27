@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATTREE Book</title>
+
+<style>
+body{
+  margin:0;
+  background:#e9e9e9;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.viewer{
+  width:90vw;
+  max-width:400px;
+  position:relative;
+  overflow:hidden;
+  background:#000;
+  border-radius:12px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+img{
+  width:100%;
+  display:block;
+}
+
+button{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.5);
+  color:white;
+  border:none;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  font-size:22px;
+  cursor:pointer;
+  z-index:10;
+}
+
+.left{ left:10px; }
+.right{ right:10px; }
+</style>
+</head>
+
+<body>
+
+<div class="viewer">
+
+  <div class="page active">
+    <img src="m.png">
+  </div>
+
+  <div class="page">
+    <img src="T.png">
+  </div>
+	<div class="page">
+  <img src="O.png">
+</div>
+
+  <button class="left" onclick="prev()">&#10094;</button>
+  <button class="right" onclick="next()">&#10095;</button>
+
+</div>
+
+<script>
+let pages = document.querySelectorAll(".page");
+let current = 0;
+
+function show(index){
+  pages.forEach(p => p.classList.remove("active"));
+  pages[index].classList.add("active");
+}
+
+function next(){
+  current++;
+  if(current >= pages.length){
+    current = 0;
+  }
+  show(current);
+}
+
+function prev(){
+  current--;
+  if(current < 0){
+    current = pages.length - 1;
+  }
+  show(current);
+}
+</script>
+
+</body>
+</html>
